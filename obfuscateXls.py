@@ -1,3 +1,11 @@
+'''Obfuscates and converts family tree xls file.
+
+Legacy family tree project available at http://freshmeat.sourceforge.net/projects/familytree_cgi/ 
+accepts family tree data in xls. It might be useful to pass over you family tree data for 
+e.g. data science and machine learning tasks. For privacy reasons you would like to replace sensitive information
+with some cryptic string.
+'''
+
 import numpy as np
 import pandas as pd
 import calendar
@@ -45,7 +53,7 @@ def obfuscate(df, nonce=""):
     t = df.copy()
     t['gender']= np.where(t['gender'] == 1, 'female', 'male')
     t['status']= np.where(np.isnan(t['is living?']), '', np.where(t['is living?'] == 1, 'Living', 'Deceased'))
-    
+
     t['year of birth']= t.apply(lambda row: __getYear(row['date of birth']), axis=1)
     t['month of birth']= t.apply(lambda row: __getMonth(row['date of birth']), axis=1)
     t['month of birth']= t['month of birth'].astype('category')
@@ -75,7 +83,7 @@ def obfuscate(df, nonce=""):
     return t
 
 def main():
-    parser = argparse.ArgumentParser(description='Obfuscates and converts family tree xls file.')
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input_file", help="input family tree file in xls format")
     parser.add_argument("output_file", help="output file either xls or csv")
     parser.add_argument("--nonce", help="nonce used obfuscate (encrypt) strings like surnames")
