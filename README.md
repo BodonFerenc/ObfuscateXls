@@ -7,6 +7,7 @@ Usage of the script.
 The script, called obfuscateXls.py, expects two named parameters
    * -i input file
    * -o output file
+   
 and has one optional parameter
    * -r string, a random string to make decoding obfuscated strings hard
    
