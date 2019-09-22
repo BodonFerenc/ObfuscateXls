@@ -3,14 +3,10 @@ Obfuscating family tree xls is useful if you we like to hand over your family tr
 
 Excel is one input format of the free, open source family tree software available at http://freshmeat.sourceforge.net/projects/familytree_cgi/ . The expected columns are descried in the documentation and copied below as reference.
 
-Usage of the script.
-The script, called obfuscateXls.py, expects two named parameters
-   * -i input file
-   * -o output file
-   
-and has one optional parameter
-   * -r string, a random string to make decoding obfuscated strings hard
-
+#Usage of the script.
+Run
+```python obfuscateXls.py --h```
+to learn about the script parameters
 
 ## Input format
 ### Excel
