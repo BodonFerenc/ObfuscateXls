@@ -5,10 +5,10 @@ Excel is one input format of the free, open source family tree software availabl
 
 Usage of the script.
 The script, called obfuscateXls.py, expects two named parameters
-   * -i <input file>
-   * -o <output file>
+   * -i input file
+   * -o output file
 and has one optional parameter
-   * -r <string> a random string to make decoding obfuscated strings hard
+   * -r string, a random string to make decoding obfuscated strings hard
    
 The obfuscated
 
