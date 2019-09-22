@@ -5,7 +5,9 @@ Excel is one input format of the free, open source family tree software availabl
 
 #Usage of the script.
 Run
+
 ```python obfuscateXls.py --h```
+
 to learn about the script parameters
 
 ## Input format
