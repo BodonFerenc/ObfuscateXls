@@ -3,6 +3,8 @@ Obfuscating family tree xls is useful if you we like to hand over your family tr
 
 Excel is one input format of the free, open source family tree software available at http://freshmeat.sourceforge.net/projects/familytree_cgi/ . The expected columns are descried in the documentation and copied below as reference.
 
+Besides obfuscating, the script also does minor data transformation like replacing 0,1 values of column _gender_ with literals male, female respectively. See source code for more information.
+
 # Usage of the script.
 Run
 ```
