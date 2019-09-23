@@ -49,10 +49,11 @@ def __obfuscateString(s: str, nonce: str):
     return str(hashlib.sha1(str.encode(s + nonce)).hexdigest())
 
 def obfuscate(df, nonce=""):
-    """Returns an obfuscated family tree stored in a pandas dataframe"""
+    """Returns an obfuscated family tree stored in a pandas dataframe""" 
     t = df.copy()
     t['gender']= np.where(t['gender'] == 1, 'female', 'male')
-    t['status']= np.where(np.isnan(t['is living?']), '', np.where(t['is living?'] == 1, 'Living', 'Deceased'))
+    t['status']= np.where(np.isnan(t['is living?']), '', np.where(t['is living?'] == 1, \
+        'Living', 'Deceased'))
 
     t['year of birth']= t.apply(lambda row: __getYear(row['date of birth']), axis=1)
     t['month of birth']= t.apply(lambda row: __getMonth(row['date of birth']), axis=1)
@@ -82,6 +83,8 @@ def obfuscate(df, nonce=""):
 
     return t
 
+extensionToFn = {'.csv': 'to_csv', '.xls': 'to_excel'}
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input_file", help="input family tree file in xls format")
@@ -89,17 +92,16 @@ def main():
     parser.add_argument("--nonce", help="nonce used obfuscate (encrypt) strings like surnames")
     args = parser.parse_args()
 
-    nonce = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(6)) if args.nonce == None else args.nonce
+    nonce = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(6)) \
+        if args.nonce == None else args.nonce
     df= pd.read_excel(args.input_file, index_col=0)
     t = obfuscate(df, nonce)
 
     extension = args.output_file[-4:]
-    if extension == ".csv":
-        t.to_csv(args.output_file)
-    elif extension == ".xls":
-        t.to_excel(args.output_file)
-    else:
+    if not extension in extensionToFn.keys(): 
         raise NotImplementedError("Unknown output extension " + extension)
+    getattr(t, extensionToFn[extension])(args.output_file)
+
 
 if __name__ == "__main__":
     main()
