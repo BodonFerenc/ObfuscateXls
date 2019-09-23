@@ -6,16 +6,16 @@ e.g. data science and machine learning tasks. For privacy reasons you would like
 with some cryptic string.
 '''
 
-import numpy as np
-import pandas as pd
 import calendar
 import hashlib
-
 from functools import partial
 import argparse
-
 import random
 import string
+
+import numpy as np
+import pandas as pd
+
 
 def __getYear(d) -> int:
     """Gets the year part from a dateframe cell"""
